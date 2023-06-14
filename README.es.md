@@ -34,6 +34,7 @@ Asegúrate de tener activado tu virtualenv:
 ```
 cd ./backend/app
 source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 Instalación de Playwright:
