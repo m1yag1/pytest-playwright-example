@@ -37,10 +37,11 @@ cd ./backend/app
 source .venv/bin/activate
 ```
 
-Install playwright:
+Install dependencies and playwright:
 
 ```
-poetry run playwright install chromium --with-deps
+pip install -r requirements.txt
+playwright install chromium --with-deps
 ```
 
 
