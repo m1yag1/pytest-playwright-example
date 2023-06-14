@@ -1,0 +1,22 @@
+__pycache__
+build
+_build
+MANIFEST
+dist
+*.pyc
+.tox
+nfcu.py.egg-info
+eggs/
+.eggs/
+
+# virtualenv
+.venv/
+venv/
+ENV/
+env/
+.env/
+
+# pytest
+.pytest_cache
+.coverage
+test.db

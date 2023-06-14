@@ -1,0 +1,93 @@
+
+
+{% extends 'base.html' %}
+
+{% block metas %}
+    {{ super() }}
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Pytest Playwright Example">
+{% endblock metas  %}
+
+{% block styles %}
+    <!-- Compiled and minified CSS --><!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            background-color: powderblue;
+        }
+        .exercise-text {
+            font-size: 2em;
+        }
+
+        .answer-text {
+            font-size: 1.2em;
+        }
+
+        li {
+            padding-bottom: 10px;
+        }
+    </style>
+
+{% endblock styles %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card">
+                <div class="card-content black-text">
+                    <span class="card-title">Texto de Ejercicio</span> <span class="badge">9999999</span>
+                    <div class="exercise-text">
+                    </div>
+                </div>
+                <div class="card-content choices">
+                <span class="card-title">Opciones</span>
+                    <div class="answer-text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+
+    const root_url = "/next_exercise"
+
+    window.onload = function() {
+        fetch(root_url)
+          .then(response => response.json())
+          .then(data => {
+            const text = data.text;
+            const exercise_id = data.id;
+            const choices = data.choices;
+
+            const exercise_text = document.querySelector(".exercise-text");
+            const badge = document.querySelector(".badge");
+            const answer_text = document.querySelector(".answer-text");
+            const choice_list = document.createElement("ol");
+
+            exercise_text.innerText = text
+            badge.innerText = exercise_id
+
+            choices.forEach(choice => {
+                const list_item = document.createElement("li");
+                list_item.innerText = choice;
+                choice_list.appendChild(list_item)
+            })
+
+            answer_text.appendChild(choice_list)
+            
+            console.log("Javascript por dentro la pajina Jinja2!");
+        })
+          .catch(error => console.error(error))
+      }
+</script>
+{% endblock scripts %}
